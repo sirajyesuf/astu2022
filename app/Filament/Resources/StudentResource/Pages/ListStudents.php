@@ -78,7 +78,7 @@ class ListStudents extends ListRecords
                 ->options(Department::all()->pluck('short_name', 'id')->toArray()),
             Tables\Filters\SelectFilter::make('user_id')
                 ->label('user')
-                ->options(User::all()->pluck('name', 'id')->toArray())
+                ->options(User::withTrashed()->pluck('name', 'id')->toArray())
                 ->hidden(auth()->user()->isEditor())
 
         ];

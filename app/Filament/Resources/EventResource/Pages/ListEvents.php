@@ -17,6 +17,12 @@ class ListEvents extends ListRecords
 
     protected function getTableQuery(): Builder
     {
+
+        $user = auth()->user();
+        if ($user->isAdministrator()) {
+
+            return Event::query();
+        }
         return Event::query()->where('user_id', auth()->id());
     }
 

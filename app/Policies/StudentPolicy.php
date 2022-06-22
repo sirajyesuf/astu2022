@@ -12,7 +12,9 @@ class StudentPolicy
 
     public function before(User $user, $ability)
     {
-        return $user->isAdministrator();
+        if ($user->isAdministrator()) {
+            return true;
+        }
     }
 
     /**

@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class User extends Authenticatable
 {
@@ -26,6 +27,16 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+    public function students()
+    {
+        return $this->hasMany(Student::class);
+    }
+
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
+
     public function isAdministrator()
     {
 
@@ -37,5 +48,13 @@ class User extends Authenticatable
     {
 
         return $this->role()->where('short_name', 'editor')->exists();
+    }
+
+    protected function name()
+    {
+
+        return Attribute::make(
+            get: fn ($value) => "hi"
+        );
     }
 }
