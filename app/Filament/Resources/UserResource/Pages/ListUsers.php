@@ -32,7 +32,7 @@ class ListUsers extends ListRecords
 
             Tables\Columns\TextColumn::make('name'),
             Tables\Columns\TextColumn::make('email'),
-            Tables\Columns\TagsColumn::make('role')
+            Tables\Columns\BadgeColumn::make('role.short_name')
             
         ];
     }
