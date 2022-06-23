@@ -15,10 +15,11 @@ class EventController extends Controller
 
 
         $day = Day::where('name', $request->query('day'))->first();
+        $per_page = $request->query('per_page', 14);
         if ($day) {
-            return EventResource::collection(Event::where('day_id', $day->id)->paginate(2));
+            return EventResource::collection(Event::where('day_id', $day->id)->paginate($per_page));
         }
 
-        return EventResource::collection(Event::paginate(2));
+        return EventResource::collection(Event::paginate($per_page));
     }
 }

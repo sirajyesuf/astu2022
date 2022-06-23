@@ -56,16 +56,27 @@ class ListStudents extends ListRecords
         ];
     }
 
-    protected function getTableBulkActions(): array
+    // protected function getTableBulkActions(): array
+    // {
+    //     return [
+
+    //         Tables\Actions\BulkAction::make('delete')
+    //             ->action('delete')
+    //             ->deselectRecordsAfterCompletion()
+    //             ->color('danger')
+    //             ->icon('heroicon-o-trash')
+
+    //     ];
+    // }
+
+    protected function getTableActions(): array
     {
         return [
-
-            Tables\Actions\BulkAction::make('delete')
-                ->action('delete')
-                ->deselectRecordsAfterCompletion()
+            Tables\Actions\Action::make('Delete')
+                ->action('revokeToken')
+                ->requiresConfirmation()
                 ->color('danger')
-                ->icon('heroicon-o-trash')
-
+                ->icon('heroicon-s-trash')
         ];
     }
 
@@ -74,22 +85,25 @@ class ListStudents extends ListRecords
         return [
 
             Tables\Filters\SelectFilter::make('department_id')
-                ->label('department')
+                ->label('Department')
                 ->options(Department::all()->pluck('short_name', 'id')->toArray()),
             Tables\Filters\SelectFilter::make('user_id')
-                ->label('user')
+                ->label('Editor')
                 ->options(User::withTrashed()->pluck('name', 'id')->toArray())
                 ->hidden(auth()->user()->isEditor())
 
         ];
     }
 
-    public function delete(Collection $records)
-    {
-        foreach ($records as $record) {
+    // public function delete(Collection $records)
+    // {
+    //     foreach ($records as $record) {
 
-            Storage::delete($record->images);
-            $record->delete();
-        }
-    }
+    //         foreach ($record->images as $image) {
+    //             Storage::delete(asset($image));
+    //         }
+
+    //         $record->delete();
+    //     }
+    // }
 }

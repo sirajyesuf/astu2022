@@ -14,6 +14,8 @@ class CreateStudent extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
+
+
         $data['user_id'] = auth()->id();
         unset($data['school_id']);
         return $data;
@@ -50,9 +52,11 @@ class CreateStudent extends CreateRecord
                         ->label('School')
                         ->options(School::all()->pluck('long_name', 'id')->toArray())
                         ->reactive()
+                        ->required()
                         ->afterStateUpdated(fn (callable $set) => $set('department_id', null)),
                     Forms\Components\Select::make('department_id')
                         ->label('Department')
+                        ->required()
                         ->options(function (callable $get) {
                             $school = School::find($get('school_id'));
                             if (!$school) {
@@ -71,11 +75,13 @@ class CreateStudent extends CreateRecord
                         ->image()
                         ->enableReordering()
                         ->maxFiles(3)
+                        ->imageCropAspectRatio('16:9')
+                        ->imageResizeTargetWidth('1920')
+                        ->imageResizeTargetHeight('1080')
                 ])
 
 
 
         ];
     }
-
 }
