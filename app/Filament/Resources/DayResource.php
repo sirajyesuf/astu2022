@@ -24,6 +24,8 @@ class DayResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->unique(ignorable: fn (?Day $record): ?Day => $record)
             ]);
     }
 
@@ -31,32 +33,25 @@ class DayResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable()
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListDays::route('/'),
-            'create' => Pages\CreateDay::route('/create'),
-            'edit' => Pages\EditDay::route('/{record}/edit'),
+            'index' => Pages\ManageDays::route('/'),
         ];
     }
 }

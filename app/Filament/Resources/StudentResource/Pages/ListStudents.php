@@ -56,18 +56,7 @@ class ListStudents extends ListRecords
         ];
     }
 
-    // protected function getTableBulkActions(): array
-    // {
-    //     return [
-
-    //         Tables\Actions\BulkAction::make('delete')
-    //             ->action('delete')
-    //             ->deselectRecordsAfterCompletion()
-    //             ->color('danger')
-    //             ->icon('heroicon-o-trash')
-
-    //     ];
-    // }
+   
 
     protected function getTableActions(): array
     {
@@ -95,15 +84,5 @@ class ListStudents extends ListRecords
         ];
     }
 
-    // public function delete(Collection $records)
-    // {
-    //     foreach ($records as $record) {
-
-    //         foreach ($record->images as $image) {
-    //             Storage::delete(asset($image));
-    //         }
-
-    //         $record->delete();
-    //     }
-    // }
+  
 }
