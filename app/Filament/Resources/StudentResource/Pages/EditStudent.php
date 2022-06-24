@@ -9,6 +9,7 @@ use Filament\Forms;
 use App\Models\School;
 use App\Models\Department;
 use App\Models\Student;
+use App\Forms\Components\FileUpload;
 
 class EditStudent extends EditRecord
 {
@@ -64,15 +65,14 @@ class EditStudent extends EditRecord
 
             Forms\Components\Card::make()
                 ->schema([
-                    Forms\Components\FileUpload::make('images')
-                    ->label('Image')
-                    ->directory('/students')
-                    ->multiple()
-                    ->image()
-                    ->enableReordering()
-                    ->maxFiles(3)
-                    ->imageResizeTargetWidth('1000')
-                    ->imageResizeTargetHeight('500')
+                    FileUpload::make('images')
+                        ->label('Image')
+                        ->directory('students')
+                        ->multiple()
+                        ->image()
+                        ->enableReordering()
+                        ->maxFiles(3)
+
                 ])
 
 

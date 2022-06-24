@@ -7,6 +7,8 @@ use App\Models\Department;
 use Filament\Resources\Pages\CreateRecord;
 use Filament\Forms;
 use App\Models\School;
+use App\Forms\Components\FileUpload;
+
 
 class CreateStudent extends CreateRecord
 {
@@ -68,16 +70,13 @@ class CreateStudent extends CreateRecord
 
             Forms\Components\Card::make()
                 ->schema([
-                    Forms\Components\FileUpload::make('images')
+                    FileUpload::make('images')
                         ->label('Image')
-                        ->directory('/students')
+                        ->directory('students')
                         ->multiple()
                         ->image()
                         ->enableReordering()
                         ->maxFiles(3)
-                        ->imageCropAspectRatio('16:9')
-                        ->imageResizeTargetWidth('1000')
-                        ->imageResizeTargetHeight('500')
                 ])
 
 

@@ -32,7 +32,7 @@ class EventPolicy
      */
     public function view(User $user, Event $event)
     {
-        return $user->id === $event->id;
+        return $user->isAdministrator();
     }
 
     /**
@@ -43,7 +43,7 @@ class EventPolicy
      */
     public function create(User $user)
     {
-        return true;
+        return $user->isAdministrator();
     }
 
     /**
@@ -55,7 +55,7 @@ class EventPolicy
      */
     public function update(User $user, Event $event)
     {
-        return $user->id === $event->user_id;
+        return $user->isAdministrator();
     }
 
     /**
@@ -67,7 +67,7 @@ class EventPolicy
      */
     public function delete(User $user, Event $event)
     {
-        return $user->id === $event->user_id;
+        return $user->isAdministrator();
     }
 
     /**
