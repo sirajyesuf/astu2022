@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
-    return view('welcome');
+    $url = "/home/siraj/Downloads/astu_year_book/public/storage/students/DPQcI2Cwc6frjGOJUCebwlmbPX9kxy-metacGhvdG9fMjAyMS0wNi0wOF8xNS0xNS0wOC5qcGc=-.jpg";
+    Storage::disk('public')->delete($url);
 });

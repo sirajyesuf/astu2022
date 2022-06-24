@@ -37,8 +37,11 @@ class StudentObserver
      */
     public function deleted(Student $student)
     {
-        // dd($student->images);
-        Storage::delete($student->images);
+
+        foreach ($student->images as $image) {
+
+            unlink(storage_path("app/public/$image"));
+        }
     }
 
     /**

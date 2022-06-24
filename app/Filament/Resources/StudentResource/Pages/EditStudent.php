@@ -65,12 +65,14 @@ class EditStudent extends EditRecord
             Forms\Components\Card::make()
                 ->schema([
                     Forms\Components\FileUpload::make('images')
-                        ->label('Image')
-                        ->required()
-                        ->image()
-                        ->multiple()
-                        ->enableReordering()
-                        ->maxFiles(3)
+                    ->label('Image')
+                    ->directory('/students')
+                    ->multiple()
+                    ->image()
+                    ->enableReordering()
+                    ->maxFiles(3)
+                    ->imageResizeTargetWidth('1000')
+                    ->imageResizeTargetHeight('500')
                 ])
 
 

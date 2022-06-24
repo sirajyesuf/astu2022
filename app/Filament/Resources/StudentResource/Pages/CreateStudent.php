@@ -76,8 +76,8 @@ class CreateStudent extends CreateRecord
                         ->enableReordering()
                         ->maxFiles(3)
                         ->imageCropAspectRatio('16:9')
-                        ->imageResizeTargetWidth('1920')
-                        ->imageResizeTargetHeight('1080')
+                        ->imageResizeTargetWidth('1000')
+                        ->imageResizeTargetHeight('500')
                 ])
 
 
