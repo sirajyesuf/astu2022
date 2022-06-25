@@ -14,9 +14,10 @@ class CreateSchool extends CreateRecord
     protected function getFormSchema(): array
     {
         return  [
-
-            Forms\Components\TextInput::make('short_name'),
-            Forms\Components\TextInput::make('long_name'),
+            Forms\Components\TextInput::make('long_name')
+                ->required(),
+            Forms\Components\TextInput::make('short_name')
+                ->required()
         ];
     }
 }

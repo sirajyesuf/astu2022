@@ -20,11 +20,12 @@ class DepartmentsRelationManager extends RelationManager
     {
         return $form
             ->schema([
-
-                Forms\Components\TextInput::make('short_name')
-                    ->required(),
                 Forms\Components\TextInput::make('long_name')
                     ->required(),
+
+                Forms\Components\TextInput::make('short_name')
+                    ->required()
+
             ]);
     }
 
