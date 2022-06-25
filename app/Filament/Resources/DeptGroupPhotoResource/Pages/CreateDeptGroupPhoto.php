@@ -18,7 +18,6 @@ class CreateDeptGroupPhoto extends CreateRecord
     {
 
 
-        $data['user_id'] = auth()->id();
         unset($data['school_id']);
         return $data;
     }

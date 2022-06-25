@@ -3,11 +3,14 @@
 namespace App\Providers;
 
 use App\Models\Student;
+use App\Observers\EventObserver;
 use App\Observers\StudentObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
+use App\Models\Event;
+use App\Models\DeptGroupPhoto;
+use App\Observers\DeptGroupPhotoObserver;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -30,7 +33,8 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         Student::observe(StudentObserver::class);
-
+        Event::observe(EventObserver::class);
+        DeptGroupPhoto::observe(DeptGroupPhotoObserver::class);
     }
 
     /**

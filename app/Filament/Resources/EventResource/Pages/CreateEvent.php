@@ -4,19 +4,15 @@ namespace App\Filament\Resources\EventResource\Pages;
 
 use App\Filament\Resources\EventResource;
 use App\Models\Day;
-use Filament\Pages\Actions;
 use Filament\Resources\Pages\CreateRecord;
 use Filament\Forms;
+use App\Forms\Components\FileUpload;
 
 class CreateEvent extends CreateRecord
 {
     protected static string $resource = EventResource::class;
 
-    protected function mutateFormDataBeforeCreate(array $data): array
-    {
-        $data['user_id'] = auth()->id();
-        return $data;
-    }
+
 
 
     protected function getFormSchema(): array
@@ -28,10 +24,11 @@ class CreateEvent extends CreateRecord
 
             Forms\Components\Card::make()
                 ->schema([
-                    Forms\Components\FileUpload::make('images')
+                    FileUpload::make('images')
                         ->label('Photos')
+                        ->required()
                         ->hint('the first photo considered as featured photo.')
-                        ->directory('/events')
+                        ->directory('events')
                         ->multiple()
                         ->image()
                         ->enableReordering()

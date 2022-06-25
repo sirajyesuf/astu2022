@@ -7,17 +7,12 @@ use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
 use Filament\Forms;
 use App\Models\Day;
+use App\Forms\Components\FileUpload;
 
 class EditEvent extends EditRecord
 {
     protected static string $resource = EventResource::class;
 
-    protected function mutateFormDataBeforeSave(array $data): array
-    {
-        $data['user_id'] = auth()->id();
-
-        return $data;
-    }
 
 
 
@@ -30,10 +25,11 @@ class EditEvent extends EditRecord
 
             Forms\Components\Card::make()
                 ->schema([
-                    Forms\Components\FileUpload::make('images')
+                    FileUpload::make('images')
                         ->label('Photos')
+                        ->required()
                         ->hint('the first photo considered as featured photo.')
-                        ->directory('/events')
+                        ->directory('events')
                         ->multiple()
                         ->image()
                         ->enableReordering()

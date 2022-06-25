@@ -17,9 +17,7 @@ return new class extends Migration
             $table->id();
             $table->json('images');
             $table->unsignedBigInteger('day_id');
-            $table->unsignedBigInteger('user_id');
             $table->foreign('day_id')->references('id')->on('days');
-            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

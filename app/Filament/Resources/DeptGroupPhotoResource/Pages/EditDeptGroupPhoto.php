@@ -17,8 +17,6 @@ class EditDeptGroupPhoto extends EditRecord
     protected function mutateFormDataBeforeSave(array $data): array
     {
 
-
-        $data['user_id'] = auth()->id();
         unset($data['school_id']);
         return $data;
     }
