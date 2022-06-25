@@ -267,7 +267,7 @@ class FileUpload extends BaseFileUpload
             // $image = $image->resize(100, 100, function ($constraint) {
             //     $constraint->aspectRatio();
             // })->save(storage_path("app/public/" . $this->getDirectory() . "/" . $file->getFilename()));
-            $image->save($save_path . "/" . $file->getFilename(), 60);
+            $image->save($save_path . "/" . $file->getFilename(), 25);
 
 
             $file->delete();

@@ -16,8 +16,6 @@ class CreateStudent extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-
-
         $data['user_id'] = auth()->id();
         unset($data['school_id']);
         return $data;
@@ -70,8 +68,14 @@ class CreateStudent extends CreateRecord
 
             Forms\Components\Card::make()
                 ->schema([
+                    FileUpload::make('gown_image')
+                        ->label('Gown Image')
+                        ->required()
+                        ->image()
+                        ->directory('students'),
                     FileUpload::make('images')
-                        ->label('Image')
+                        ->label('Suit Images')
+                        ->required()
                         ->directory('students')
                         ->multiple()
                         ->image()

@@ -43,7 +43,13 @@ class ListStudents extends ListRecords
             Tables\Columns\BadgeColumn::make('department.school.short_name')
                 ->label('School'),
             Tables\Columns\BadgeColumn::make('department.short_name'),
+            Tables\Columns\BadgeColumn::make('gown_image')
+                ->label('Gown Image')
+                ->colors([
+                    'primary'
+                ]),
             Tables\Columns\TagsColumn::make('images')
+                ->label("Suit Images")
 
 
         ];
@@ -56,7 +62,7 @@ class ListStudents extends ListRecords
         ];
     }
 
-   
+
 
     protected function getTableActions(): array
     {
@@ -83,6 +89,4 @@ class ListStudents extends ListRecords
 
         ];
     }
-
-  
 }
