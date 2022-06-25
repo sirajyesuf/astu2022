@@ -250,24 +250,25 @@ class FileUpload extends BaseFileUpload
                 return $file;
             }
 
-            // dd($file);
-
-            // compression
-            $image = Image::make($file->getRealPath());
-            $image = $image->resize(100, 100, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save(storage_path("app/public/" . $this->getDirectory() . "/" . $file->getFilename()));
-
             // $storedFile = $this->evaluate($callback, [
             //     'file' => $file,
             // ]);
+            // $file->delete();
+
+            // return $storedFile;
+
+
+
+            // compression
+            $image = Image::make($file->getRealPath());
+            // $image = $image->resize(100, 100, function ($constraint) {
+            //     $constraint->aspectRatio();
+            // })->save(storage_path("app/public/" . $this->getDirectory() . "/" . $file->getFilename()));
+            $image->save(storage_path("app/public/" . $this->getDirectory() . "/" . $file->getFilename()), 60);
 
 
             $file->delete();
 
-            // return $storedFile;
-
-            // dd($image);
             return  $this->getDirectory() . "/" . $image->basename;
         }, $this->getState());
 
