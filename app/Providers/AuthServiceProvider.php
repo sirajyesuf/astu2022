@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\DeptGroupPhoto;
 use App\Models\Event;
 use App\Models\School;
 use App\Policies\UserPolicy;
@@ -12,6 +13,8 @@ use App\Policies\SchoolPolicy;
 use App\Policies\EventPolicy;
 use App\Policies\StudentPolicy;
 use App\Policies\DayPolicy;
+use App\Policies\DeptGroupPhotoPolicy;
+use App\Policies\TokenPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -26,7 +29,9 @@ class AuthServiceProvider extends ServiceProvider
         School::class => SchoolPolicy::class,
         Student::class => StudentPolicy::class,
         Event::class => EventPolicy::class,
-        Day::class => DayPolicy::class
+        Day::class => DayPolicy::class,
+        Token::class => TokenPolicy::class,
+        DeptGroupPhoto::class => DeptGroupPhotoPolicy::class
     ];
 
     /**

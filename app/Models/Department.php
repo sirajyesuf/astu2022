@@ -21,4 +21,9 @@ class Department extends Model
     {
         return $this->hasMany(Student::class);
     }
+
+    public function deptGroupPhoto()
+    {
+        return $this->hasOne(DeptGroupPhoto::class);
+    }
 }

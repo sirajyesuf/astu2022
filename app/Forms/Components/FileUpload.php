@@ -256,15 +256,18 @@ class FileUpload extends BaseFileUpload
             // $file->delete();
 
             // return $storedFile;
+            $save_path = storage_path("app/public/" . $this->getDirectory() . "/");
 
-
+            if (!file_exists($save_path)) {
+                mkdir($save_path, 0775, false);
+            }
 
             // compression
             $image = Image::make($file->getRealPath());
             // $image = $image->resize(100, 100, function ($constraint) {
             //     $constraint->aspectRatio();
             // })->save(storage_path("app/public/" . $this->getDirectory() . "/" . $file->getFilename()));
-            $image->save(storage_path("app/public/" . $this->getDirectory() . "/" . $file->getFilename()), 60);
+            $image->save($save_path . "/" . $file->getFilename(), 60);
 
 
             $file->delete();
