@@ -3,11 +3,11 @@
 namespace App\Filament\Resources\UserResource\Pages;
 
 use App\Filament\Resources\UserResource;
-use App\Models\User;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
-use Filament\Forms;
 use Illuminate\Support\Facades\Hash;
+use Filament\Forms;
+use App\Models\User;
 
 class EditUser extends EditRecord
 {
@@ -42,6 +42,8 @@ class EditUser extends EditRecord
     {
         return [
             Actions\DeleteAction::make(),
+            Actions\ForceDeleteAction::make(),
+            Actions\RestoreAction::make(),
         ];
     }
 }

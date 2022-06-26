@@ -3,20 +3,19 @@
 namespace App\Filament\Resources\UserResource\Pages;
 
 use App\Filament\Resources\UserResource;
-use App\Models\User;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
+use App\Models\User;
 
 class ListUsers extends ListRecords
 {
     protected static string $resource = UserResource::class;
 
-
     protected function getTableQuery(): Builder
     {
-   
+
         return User::query()->whereHas(
             'role',
             function ($query) {
@@ -33,10 +32,9 @@ class ListUsers extends ListRecords
             Tables\Columns\TextColumn::make('name'),
             Tables\Columns\TextColumn::make('email'),
             Tables\Columns\BadgeColumn::make('role.short_name')
-            
+
         ];
     }
-
 
     protected function getActions(): array
     {
