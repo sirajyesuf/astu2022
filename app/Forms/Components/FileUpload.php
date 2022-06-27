@@ -266,29 +266,35 @@ class FileUpload extends BaseFileUpload
             $image = Image::make($file->getRealPath());
             $image_size = $image->filesize();
             $rate = array();
-            if ($image_size > 5000000) {
+            $resizable = false;
+            if ($image_size >= 5000000) {
                 $rate['width'] = $image->width() / 5;
                 $rate['height'] = $image->height() / 5;
-            } elseif ($image_size > 3000000) {
+                $resizable = true;
+            } elseif ($image_size >= 3000000) {
                 $rate['width'] = $image->width() / 4;
                 $rate['height'] = $image->height() / 4;
-            } elseif ($image_size >= 1000000 and $image_size < 3000000) {
+
+                $resizable = true;
+            } elseif ($image_size > 1000000 and $image_size < 3000000) {
 
                 $rate['width'] = $image->width() / 3;
                 $rate['height'] = $image->height() / 3;
+                $resizable = true;
             } elseif ($image_size >= 250000 and $image_size <= 1000000) {
                 $rate['width'] = $image->width() / 2;
                 $rate['height'] = $image->height() / 2;
-            } else {
-
-                $rate['width'] = $image->width();
-                $rate['height'] = $image->height();
+                $resizable = true;
             }
 
+            if ($resizable) {
 
-            $image = $image->resize($rate['width'], $rate['height'], function ($constraint) {
-                $constraint->aspectRatio();
-            })->save(($save_path . "/" . $file->getFilename()));
+                $image = $image->resize($rate['width'], $rate['height'], function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save(($save_path . "/" . $file->getFilename()));
+            } else {
+                $image->save(($save_path . "/" . $file->getFilename()));
+            }
 
             $file->delete();
 

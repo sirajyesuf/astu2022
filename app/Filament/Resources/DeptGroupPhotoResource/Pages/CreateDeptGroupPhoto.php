@@ -9,6 +9,7 @@ use App\Forms\Components\FileUpload;
 use Filament\Forms;
 use App\Models\School;
 use App\Models\Department;
+use Illuminate\Support\Facades\DB;
 
 class CreateDeptGroupPhoto extends CreateRecord
 {
@@ -43,9 +44,12 @@ class CreateDeptGroupPhoto extends CreateRecord
                         ->options(function (callable $get) {
                             $school = School::find($get('school_id'));
                             if (!$school) {
-                                return Department::all()->pluck('long_name', 'id')->toArray();
+                                return Department::doesntHave('deptGroupPhoto')->get()
+                                    ->pluck('long_name', 'id')->toArray();
                             }
-                            return $school->departments->pluck('long_name', 'id');
+                            return $school->departments()
+                                ->doesntHave('deptGroupPhoto')->get()
+                                ->pluck('long_name', 'id')->toArray();
                         }),
                 ]),
 

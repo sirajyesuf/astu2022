@@ -27,6 +27,9 @@ class EditDeptGroupPhoto extends EditRecord
     {
 
 
+
+
+
         return [
             Forms\Components\Card::make()
                 ->schema([
@@ -34,7 +37,8 @@ class EditDeptGroupPhoto extends EditRecord
                         ->label('School')
                         ->options(School::all()->pluck('long_name', 'id')->toArray())
                         ->reactive()
-                        ->required()
+                        ->disablePlaceholderSelection()
+                        ->default(Department::find($this->record->department_id)->school->id)
                         ->afterStateUpdated(fn (callable $set) => $set('department_id', null)),
                     Forms\Components\Select::make('department_id')
                         ->label('Department')

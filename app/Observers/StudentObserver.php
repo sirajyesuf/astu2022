@@ -26,7 +26,10 @@ class StudentObserver
      */
     public function updated(Student $student)
     {
-        //
+        // foreach ($student->images as $image) {
+
+        //     unlink(storage_path("app/public/$image"));
+        // }
     }
 
     /**
