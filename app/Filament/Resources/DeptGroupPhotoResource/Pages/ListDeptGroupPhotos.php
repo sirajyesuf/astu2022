@@ -6,6 +6,7 @@ use App\Filament\Resources\DeptGroupPhotoResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Tables;
+use App\Models\Department;
 
 class ListDeptGroupPhotos extends ListRecords
 {
@@ -15,9 +16,9 @@ class ListDeptGroupPhotos extends ListRecords
     {
         return [
             Tables\Columns\BadgeColumn::make('department.short_name')
-            ->label('Department'),
+                ->label('Department'),
             Tables\Columns\TagsColumn::make('images')
-            ->label('Images')
+                ->label('Images')
         ];
     }
 
@@ -37,6 +38,16 @@ class ListDeptGroupPhotos extends ListRecords
     {
         return [
             Actions\CreateAction::make(),
+        ];
+    }
+
+    protected function getTableFilters(): array
+    {
+        return [
+
+            Tables\Filters\SelectFilter::make('day_id')
+                ->label('Department')
+                ->options(Department::all()->pluck('short_name', 'id')->toArray())
         ];
     }
 }
