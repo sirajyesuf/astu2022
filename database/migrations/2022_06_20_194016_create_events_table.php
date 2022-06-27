@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->json('images');
-            $table->unsignedBigInteger('day_id');
+            $table->unsignedBigInteger('day_id')->unique();
             $table->foreign('day_id')->references('id')->on('days');
             $table->timestamps();
         });

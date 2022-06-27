@@ -15,17 +15,7 @@ class ListEvents extends ListRecords
 {
     protected static string $resource = EventResource::class;
 
-    protected function getTableQuery(): Builder
-    {
-
-        $user = auth()->user();
-        if ($user->isAdministrator()) {
-
-            return Event::query();
-        }
-        return Event::query()->where('user_id', auth()->id());
-    }
-
+ 
     protected function getTableColumns(): array
     {
         return [
@@ -41,18 +31,26 @@ class ListEvents extends ListRecords
         ];
     }
 
+
+    protected function getTableBulkActions(): array
+    {
+        if (auth()->user()->isAdministrator()) {
+
+            return [
+                Tables\Actions\DeleteBulkAction::make()
+            ];
+        }
+
+        return [];
+    }
+
     protected function getTableFilters(): array
     {
         return [
 
             Tables\Filters\SelectFilter::make('day_id')
                 ->label('Day')
-                ->options(Day::all()->pluck('name', 'id')->toArray()),
-            Tables\Filters\SelectFilter::make('user_id')
-                ->label('user')
-                ->options(User::all()->pluck('name', 'id')->toArray())
-                ->hidden(auth()->user()->isEditor())
-
+                ->options(Day::all()->pluck('name', 'id')->toArray())
         ];
     }
 }

@@ -20,7 +20,14 @@ class CreateEvent extends CreateRecord
         return  [
             Forms\Components\Select::make('day_id')
                 ->label('day')
-                ->options(Day::all()->pluck('name', 'id')),
+                ->options(
+                    Day::doesntHave('event')->get()
+                        ->pluck('name', 'id')
+                        ->toArray()
+
+                )
+                ->unique()
+                ->required(),
 
             Forms\Components\Card::make()
                 ->schema([

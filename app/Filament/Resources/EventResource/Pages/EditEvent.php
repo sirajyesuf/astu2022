@@ -8,6 +8,7 @@ use Filament\Resources\Pages\EditRecord;
 use Filament\Forms;
 use App\Models\Day;
 use App\Forms\Components\FileUpload;
+use App\Models\Event;
 
 class EditEvent extends EditRecord
 {
@@ -21,7 +22,15 @@ class EditEvent extends EditRecord
         return  [
             Forms\Components\Select::make('day_id')
                 ->label('day')
-                ->options(Day::all()->pluck('name', 'id')),
+                ->options(
+                    Day::has('event')->get()
+                        ->pluck('name', 'id')
+                        ->toArray()
+                )
+                ->required()
+                ->default(Day::find($this->record->day_id)->id)
+                ->disablePlaceholderSelection()
+                ->disabled(),
 
             Forms\Components\Card::make()
                 ->schema([
