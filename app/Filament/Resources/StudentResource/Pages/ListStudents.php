@@ -62,19 +62,6 @@ class ListStudents extends ListRecords
         ];
     }
 
-
-
-    protected function getTableActions(): array
-    {
-        return [
-            Tables\Actions\Action::make('Delete')
-                ->action('revokeToken')
-                ->requiresConfirmation()
-                ->color('danger')
-                ->icon('heroicon-s-trash')
-        ];
-    }
-
     protected function getTableFilters(): array
     {
         return [

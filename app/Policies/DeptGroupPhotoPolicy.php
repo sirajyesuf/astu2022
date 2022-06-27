@@ -18,8 +18,7 @@ class DeptGroupPhotoPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->isAdministrator();
-
+        return true;
     }
 
     /**
@@ -31,8 +30,7 @@ class DeptGroupPhotoPolicy
      */
     public function view(User $user, DeptGroupPhoto $deptGroupPhoto)
     {
-        return $user->isAdministrator();
-
+        return true;
     }
 
     /**
@@ -43,8 +41,7 @@ class DeptGroupPhotoPolicy
      */
     public function create(User $user)
     {
-        return $user->isAdministrator();
-
+        return true;
     }
 
     /**
@@ -56,8 +53,7 @@ class DeptGroupPhotoPolicy
      */
     public function update(User $user, DeptGroupPhoto $deptGroupPhoto)
     {
-        return $user->isAdministrator();
-
+        return true;
     }
 
     /**
@@ -69,7 +65,7 @@ class DeptGroupPhotoPolicy
      */
     public function delete(User $user, DeptGroupPhoto $deptGroupPhoto)
     {
-        //
+        return $user->isAdministrator();
     }
 
     /**

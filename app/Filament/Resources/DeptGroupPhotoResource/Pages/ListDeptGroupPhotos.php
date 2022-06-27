@@ -21,6 +21,18 @@ class ListDeptGroupPhotos extends ListRecords
         ];
     }
 
+    protected function getTableBulkActions(): array
+    {
+        if (auth()->user()->isAdministrator()) {
+
+            return [
+                Tables\Actions\DeleteBulkAction::make()
+            ];
+        }
+
+        return [];
+    }
+
     protected function getActions(): array
     {
         return [

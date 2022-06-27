@@ -25,10 +25,6 @@ class DeptGroupPhotoObserver
      */
     public function updated(DeptGroupPhoto $deptGroupPhoto)
     {
-        foreach ($deptGroupPhoto->images as $image) {
-
-            unlink(storage_path("app/public/$image"));
-        }
     }
 
     /**
