@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('dept_group_photos', function (Blueprint $table) {
             $table->id();
             $table->json('images');
-            $table->unsignedBigInteger('department_id');
+            $table->unsignedBigInteger('department_id')->unique();
             $table->foreign('department_id')->references('id')->on('departments');
             $table->timestamps();
         });

@@ -41,6 +41,7 @@ class CreateDeptGroupPhoto extends CreateRecord
                     Forms\Components\Select::make('department_id')
                         ->label('Department')
                         ->required()
+                        ->unique()
                         ->options(function (callable $get) {
                             $school = School::find($get('school_id'));
                             if (!$school) {
@@ -56,7 +57,7 @@ class CreateDeptGroupPhoto extends CreateRecord
             Forms\Components\Card::make()
                 ->schema([
                     FileUpload::make('images')
-                        ->label('Image')
+                        ->label('Images')
                         ->directory('dept_group_photos')
                         ->multiple()
                         ->image()

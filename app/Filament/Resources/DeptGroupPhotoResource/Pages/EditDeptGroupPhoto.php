@@ -38,11 +38,13 @@ class EditDeptGroupPhoto extends EditRecord
                         ->options(School::all()->pluck('long_name', 'id')->toArray())
                         ->reactive()
                         ->disablePlaceholderSelection()
+                        ->disabled()
                         ->default(Department::find($this->record->department_id)->school->id)
                         ->afterStateUpdated(fn (callable $set) => $set('department_id', null)),
                     Forms\Components\Select::make('department_id')
                         ->label('Department')
                         ->required()
+                        ->disabled()
                         ->options(function (callable $get) {
                             $school = School::find($get('school_id'));
                             if (!$school) {
@@ -55,7 +57,7 @@ class EditDeptGroupPhoto extends EditRecord
             Forms\Components\Card::make()
                 ->schema([
                     FileUpload::make('images')
-                        ->label('Image')
+                        ->label('Images')
                         ->directory('dept_group_photos')
                         ->multiple()
                         ->image()
