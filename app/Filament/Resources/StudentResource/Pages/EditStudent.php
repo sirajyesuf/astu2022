@@ -36,9 +36,12 @@ class EditStudent extends EditRecord
                     Forms\Components\TextInput::make('student_id')
                         ->required()
                         ->unique(ignorable: fn (?Student $record): ?Student => $record),
-                    Forms\Components\TextInput::make('last_word')
+                    Forms\Components\Textarea::make('last_word')
                         ->required()
+                        ->minLength(1)
                         ->maxLength(32)
+                        ->cols(3)
+                        ->rows(2)
 
                 ])
                 ->columns([
