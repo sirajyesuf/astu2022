@@ -20,6 +20,10 @@ class School extends Model
     {
         return $this->hasManyThrough(Student::class, Department::class);
     }
+    public function groupPhotos()
+    {
+        return $this->hasManyThrough(DeptGroupPhoto::class, Department::class);
+    }
 
     public function images()
     {

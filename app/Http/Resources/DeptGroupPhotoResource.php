@@ -14,8 +14,18 @@ class DeptGroupPhotoResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            'images' => $this->images
-        ];
+
+        if ($request->query('school')) {
+
+            return [
+                'school' => $this['school'],
+                'images' => $this['images']
+            ];
+        } else {
+            return [
+                'dept' => $this->department,
+                'images' => $this->images
+            ];
+        }
     }
 }
