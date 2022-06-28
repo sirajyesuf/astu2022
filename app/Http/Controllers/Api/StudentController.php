@@ -15,17 +15,29 @@ class StudentController extends Controller
     {
         $school = School::where('short_name', $request->query('school'))->first();
         $dept = Department::where('short_name', $request->query('dept'))->first();
+        $searchTerm = $request->query('search');
+
         $per_page = $request->query('per_page', 14);
 
         if ($school) {
 
-            return StudentResource::collection($school->students()->paginate($per_page));
+            return StudentResource::collection($school->students()->paginate($per_page)->sortDesc());
         }
 
         if ($dept) {
-            return StudentResource::collection($dept->students()->paginate($per_page));
+            return StudentResource::collection($dept->students()->paginate($per_page)->sortDesc());
         }
 
-        return StudentResource::collection(Student::paginate($per_page));
+        if ($searchTerm) {
+
+            return StudentResource::collection(Student::where('first_name', 'LIKE', "%{$searchTerm}%")->paginate($per_page)->sortDesc());
+        }
+
+        return StudentResource::collection(Student::paginate($per_page)->sortDesc());
+    }
+
+    public function show(Student $student)
+    {
+        return new StudentResource($student);
     }
 }

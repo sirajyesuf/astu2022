@@ -9,7 +9,11 @@ use App\Http\Controllers\Api\DeptGroupPhotoController;
 route::prefix('v1')
     ->middleware('client')
     ->group(function () {
-        Route::get('/students', [StudentController::class, 'index']);
+        Route::controller(StudentController::class)
+            ->group(function () {
+                Route::get('/students', 'index');
+                Route::get('/students/{student}', 'show');
+            });
         Route::get('/events', [EventController::class, 'index']);
         Route::get('/group_photos', [DeptGroupPhotoController::class, 'index']);
     });
