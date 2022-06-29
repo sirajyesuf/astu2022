@@ -2,6 +2,7 @@
 
 namespace App\Filament\Widgets;
 
+use App\Models\DeptGroupPhoto;
 use App\Models\Student;
 use App\Models\Event;
 use App\Models\Token;
@@ -14,6 +15,8 @@ class StatsOverview extends BaseWidget
     {
         $user = auth()->user();
         $number_total_events = Event::count();
+        $number_total_groupPhotos = DeptGroupPhoto::count();
+
 
 
         if ($user->isAdministrator()) {
@@ -33,6 +36,11 @@ class StatsOverview extends BaseWidget
                     ->description('total number of clients')
                     ->descriptionIcon('heroicon-s-key')
                     ->color('success'),
+                Card::make('Group Photos', $number_total_groupPhotos)
+                    ->description('total number of total dept group photod')
+                    ->descriptionIcon('heroicon-s-key')
+                    ->color('success')
+
             ];
         }
         if ($user->isEditor()) {
@@ -48,6 +56,10 @@ class StatsOverview extends BaseWidget
                 Card::make('Events', $number_total_events)
                     ->description('total number of events')
                     ->descriptionIcon('heroicon-o-calendar')
+                    ->color('success'),
+                Card::make('Group Photos', $number_total_groupPhotos)
+                    ->description('total number of total dept group photod')
+                    ->descriptionIcon('heroicon-s-key')
                     ->color('success')
 
             ];
