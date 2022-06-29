@@ -60,7 +60,10 @@ class StudentPolicy
      */
     public function update(User $user, Student $student)
     {
-        return $user->id === $student->user_id;
+        // return $user->id === $student->user_id;
+
+        dump($user);
+        dd($student);
     }
 
     /**

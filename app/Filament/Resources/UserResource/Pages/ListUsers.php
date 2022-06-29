@@ -24,6 +24,11 @@ class ListUsers extends ListRecords
         );
     }
 
+    protected function getTableBulkActions(): array
+    {
+        return [];
+    }
+
 
     protected function getTableColumns(): array
     {
