@@ -19,7 +19,6 @@ class RoleSeeder extends Seeder
     {
 
 
-        // DB::table('roles')->truncate();
         $roles = [
             [
                 'short_name' => 'admin',
