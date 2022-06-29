@@ -19,7 +19,7 @@ class DeptGroupPhotoResource extends Resource
     protected static ?string $modelLabel = 'Group Photos';
 
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-s-photograph';
 
     public static function form(Form $form): Form
     {
