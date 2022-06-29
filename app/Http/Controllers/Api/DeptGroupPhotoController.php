@@ -27,5 +27,10 @@ class DeptGroupPhotoController extends Controller
 
             return new DeptGroupPhotoResource(['school' => $school, 'images' => $school_group_photos]);
         }
+
+
+        return response()->json([
+            'message' => "query parameter is required."
+        ], 402);
     }
 }
