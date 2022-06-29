@@ -37,7 +37,7 @@ class StudentPolicy
      */
     public function view(User $user, Student $student)
     {
-        return $user->id === $student->user_id;
+        return $user->id == $student->user_id;
     }
 
     /**
@@ -60,11 +60,8 @@ class StudentPolicy
      */
     public function update(User $user, Student $student)
     {
-        // return $user->id === $student->user_id;
+        return $user->id == $student->user_id;
 
-        dump($user);
-        dump($student);
-        dd($user->id === $student->user_id);
     }
 
     /**
@@ -76,7 +73,7 @@ class StudentPolicy
      */
     public function delete(User $user, Student $student)
     {
-        return $user->id === $student->user_id;
+        return $user->id == $student->user_id;
     }
 
     /**
