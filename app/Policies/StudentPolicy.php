@@ -63,7 +63,8 @@ class StudentPolicy
         // return $user->id === $student->user_id;
 
         dump($user);
-        dd($student);
+        dump($student);
+        dd($user->id === $student->user_id);
     }
 
     /**
