@@ -21,19 +21,19 @@ class StudentController extends Controller
 
         if ($school) {
 
-            return StudentResource::collection($school->students()->paginate($per_page)->sortDesc());
+            return StudentResource::collection($school->students()->orderBy('first_name')->paginate($per_page));
         }
 
         if ($dept) {
-            return StudentResource::collection($dept->students()->paginate($per_page)->sortDesc());
+            return StudentResource::collection($dept->students()->orderBy('first_name')->paginate($per_page));
         }
 
         if ($searchTerm) {
 
-            return StudentResource::collection(Student::where('first_name', 'LIKE', "%{$searchTerm}%")->paginate($per_page)->sortDesc());
+            return StudentResource::collection(Student::where('first_name', 'LIKE', "%{$searchTerm}%")->orderBy('first_name')->paginate($per_page));
         }
 
-        return StudentResource::collection(Student::paginate($per_page)->sortDesc());
+        return StudentResource::collection(Student::orderBy('first_name')->paginate($per_page));
     }
 
     public function show(Student $student)
