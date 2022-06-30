@@ -39,7 +39,7 @@ class EditStudent extends EditRecord
                     Forms\Components\Textarea::make('last_word')
                         ->required()
                         ->minLength(1)
-                        ->maxLength(32)
+                        ->maxLength(50)
                         ->cols(3)
                         ->rows(2)
 
