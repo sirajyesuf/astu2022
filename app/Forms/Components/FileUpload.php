@@ -15,6 +15,8 @@ class FileUpload extends BaseFileUpload
     use Concerns\HasPlaceholder;
     use  Concerns\HasExtraAlpineAttributes;
 
+
+
     protected string $view = 'forms::components.file-upload';
 
     protected string | Closure | null $imageCropAspectRatio = null;
@@ -266,32 +268,27 @@ class FileUpload extends BaseFileUpload
             $image = Image::make($file->getRealPath());
             $image_size = $image->filesize();
             $rate = array();
+            $quality = false;
             $resizable = false;
-            if ($image_size >= 5000000) {
-                $rate['width'] = $image->width() / 5;
-                $rate['height'] = $image->height() / 5;
-                $resizable = true;
-            } elseif ($image_size >= 3000000) {
-                $rate['width'] = $image->width() / 4;
-                $rate['height'] = $image->height() / 4;
-
-                $resizable = true;
-            } elseif ($image_size > 1000000 and $image_size < 3000000) {
-
+            if ($image_size > 4000000) {
                 $rate['width'] = $image->width() / 3;
                 $rate['height'] = $image->height() / 3;
                 $resizable = true;
-            } elseif ($image_size >= 250000 and $image_size <= 1000000) {
+            } elseif ($image_size > 2000000 and $image_size <= 4000000) {
                 $rate['width'] = $image->width() / 2;
                 $rate['height'] = $image->height() / 2;
-                $resizable = true;
-            }
 
+                $resizable = true;
+            } elseif ($image_size > 400000 and $image_size <= 2000000) {
+                $quality = true;
+            }
             if ($resizable) {
 
                 $image = $image->resize($rate['width'], $rate['height'], function ($constraint) {
                     $constraint->aspectRatio();
                 })->save(($save_path . "/" . $file->getFilename()));
+            } elseif ($quality) {
+                $image->save(($save_path . "/" . $file->getFilename()), 80);
             } else {
                 $image->save(($save_path . "/" . $file->getFilename()));
             }
