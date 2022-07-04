@@ -17,16 +17,14 @@ class EventResource extends JsonResource
 
         if ($request->query('id')) {
             return [
-                'id' => $this->id,
-                'day_id' => $this->day->id,
+                'id' => $this->day->id,
                 'day' => $this->day->name,
                 'image' => $this->images
 
             ];
         }
         return [
-            'id' => $this->id,
-            'day_id' => $this->day->id,
+            'id' => $this->day->id,
             'day' => $this->day->name,
             'image' => $this->images[0]
 
