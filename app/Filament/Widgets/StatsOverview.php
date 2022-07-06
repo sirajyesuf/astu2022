@@ -58,7 +58,7 @@ class StatsOverview extends BaseWidget
                     ->descriptionIcon('heroicon-o-calendar')
                     ->color('success'),
                 Card::make('Group Photos', $number_total_groupPhotos)
-                    ->description('total number of total dept group photos')
+                    ->description('total number of dept group photos')
                     ->descriptionIcon('heroicon-s-photograph')
                     ->color('success')
 
