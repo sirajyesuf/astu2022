@@ -46,6 +46,7 @@ class DeptGroupPhotoController extends Controller
         }
 
 
+
         return response()->json([
             'message' => "at least one query parameter is required."
         ], 402);

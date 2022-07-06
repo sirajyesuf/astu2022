@@ -46,7 +46,7 @@ class CreateStudent extends CreateRecord
                                 $state
                             );
                         })
-                        ->helperText(fn ($state, callable $set) => $set('unique_validation', Student::where('student_id', $state)->first() ? 'ℹ️ The student id has already been taken.' : ''))
+                        ->helperText(fn ($state, callable $set) => $set('unique_validation', Student::where('student_id', strtoupper($state))->first() ? 'ℹ️ The student id has already been taken.' : ''))
                         ->reactive(),
                     Forms\Components\Textarea::make('last_word')
                         ->required()
