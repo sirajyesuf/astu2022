@@ -30,7 +30,7 @@ class StatsOverview extends BaseWidget
                     ->color('success'),
                 Card::make('Events', $number_total_events)
                     ->description('total number of events')
-                    ->descriptionIcon('heroicon-o-calendar')
+                    ->descriptionIcon('heroicon-s-calendar')
                     ->color('success'),
                 Card::make('Clients', $number_total_clients)
                     ->description('total number of clients')
@@ -55,7 +55,7 @@ class StatsOverview extends BaseWidget
                     ->color('success'),
                 Card::make('Events', $number_total_events)
                     ->description('total number of events')
-                    ->descriptionIcon('heroicon-o-calendar')
+                    ->descriptionIcon('heroicon-s-calendar')
                     ->color('success'),
                 Card::make('Group Photos', $number_total_groupPhotos)
                     ->description('total number of dept group photos')
