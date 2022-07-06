@@ -8,6 +8,8 @@ use Filament\Resources\Pages\CreateRecord;
 use Filament\Forms;
 use App\Models\School;
 use App\Forms\Components\FileUpload;
+use App\Models\Student;
+use Closure;
 
 
 class CreateStudent extends CreateRecord
@@ -37,7 +39,15 @@ class CreateStudent extends CreateRecord
                         ->required(),
                     Forms\Components\TextInput::make('student_id')
                         ->required()
-                        ->unique(),
+                        ->unique()
+                        ->afterStateUpdated(function (Closure $set, $state) {
+                            $set(
+                                'unique_validation',
+                                $state
+                            );
+                        })
+                        ->helperText(fn ($state, callable $set) => $set('unique_validation', Student::where('student_id', $state)->first() ? 'ℹ️ The student id has already been taken.' : ''))
+                        ->reactive(),
                     Forms\Components\Textarea::make('last_word')
                         ->required()
                         ->minLength(1)
