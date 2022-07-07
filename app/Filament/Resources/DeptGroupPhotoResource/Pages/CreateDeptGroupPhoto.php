@@ -62,7 +62,7 @@ class CreateDeptGroupPhoto extends CreateRecord
                         ->multiple()
                         ->image()
                         ->enableReordering()
-                        ->maxFiles(5)
+                        ->maxFiles(100)
                         ->required()
                 ])
 

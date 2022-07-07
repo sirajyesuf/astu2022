@@ -62,7 +62,7 @@ class EditDeptGroupPhoto extends EditRecord
                         ->multiple()
                         ->image()
                         ->enableReordering()
-                        ->maxFiles(5)
+                        ->maxFiles(100)
                         ->required()
                 ])
 
