@@ -51,7 +51,7 @@ class CreateStudent extends CreateRecord
                     Forms\Components\Textarea::make('last_word')
                         ->required()
                         ->minLength(1)
-                        ->maxLength(100)
+                        ->maxLength(200)
                         ->cols(3)
                         ->rows(2)
 
