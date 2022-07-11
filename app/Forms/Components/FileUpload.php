@@ -270,7 +270,13 @@ class FileUpload extends BaseFileUpload
             $rate = array();
             $quality = false;
             $resizable = false;
-            if ($image_size > 4000000) {
+            if ($image_size > 8000000) {
+
+                $rate['width'] = $image->width() / 4;
+                $rate['height'] = $image->height() / 4;
+                $resizable = true;
+            }
+            if ($image_size > 4000000 and $image_size <= 8000000) {
                 $rate['width'] = $image->width() / 3;
                 $rate['height'] = $image->height() / 3;
                 $resizable = true;

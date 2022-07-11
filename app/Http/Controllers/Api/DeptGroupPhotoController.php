@@ -24,8 +24,8 @@ class DeptGroupPhotoController extends Controller
             $school_group_photos  = collect($school->groupPhotos()->get()->pluck('images')->all())
                 ->flatten()->toArray();
             $number_school_group_photos = count($school_group_photos);
-            if ($number_school_group_photos > 10) {
-                $school_group_photos = Arr::random($school_group_photos, 10);
+            if ($number_school_group_photos >5) {
+                $school_group_photos = Arr::random($school_group_photos, 5);
             } else {
                 $school_group_photos = Arr::random($school_group_photos, $number_school_group_photos);
             }
