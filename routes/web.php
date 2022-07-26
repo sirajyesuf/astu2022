@@ -17,5 +17,5 @@ use Illuminate\Support\Facades\Storage;
 
 Route::get('/', function () {
 
-    echo phpinfo();
+    return redirect('/admin');
 });
