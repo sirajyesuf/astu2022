@@ -9,6 +9,7 @@ use Filament\Forms;
 use App\Models\Day;
 use App\Forms\Components\FileUpload;
 use App\Models\Event;
+use Illuminate\Support\Arr;
 
 class EditEvent extends EditRecord
 {
@@ -19,7 +20,14 @@ class EditEvent extends EditRecord
 
     protected function getFormSchema(): array
     {
+
+
+        $numbers = range(1, (int)env('MAX_CHRONOLOGY_NUMBER'));
+        $alread_taken_numbers = Event::where('order','!=',$this->record->order)->get()->pluck('order')->all();
+        $available = Arr::except($numbers, $alread_taken_numbers);
+
         return  [
+
             Forms\Components\Select::make('day_id')
                 ->label('day')
                 ->options(
@@ -31,6 +39,11 @@ class EditEvent extends EditRecord
                 ->default(Day::find($this->record->day_id)->id)
                 ->disablePlaceholderSelection()
                 ->disabled(),
+            Forms\Components\Select::make('order')
+                ->label('Chronology')
+                ->options($available)
+                ->disablePlaceholderSelection(),
+
 
             Forms\Components\Card::make()
                 ->schema([

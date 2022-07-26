@@ -15,11 +15,12 @@ class ListEvents extends ListRecords
 {
     protected static string $resource = EventResource::class;
 
- 
+
     protected function getTableColumns(): array
     {
         return [
             Tables\Columns\TextColumn::make('day.name'),
+            Tables\Columns\BadgeColumn::make('order'),
             Tables\Columns\TagsColumn::make('images')
         ];
     }
