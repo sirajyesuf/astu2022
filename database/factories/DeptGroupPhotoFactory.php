@@ -28,6 +28,6 @@ class DeptGroupPhotoFactory extends Factory
         $image = $faker->image(storage_path('app/public/students'),640, 480, null, false);
 
         return "students/".$image;
-
+        
     }
 }
