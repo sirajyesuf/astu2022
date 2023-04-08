@@ -3,21 +3,19 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\School;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Department>
- */
 class DepartmentFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    
     public function definition()
     {
+        $long_name = $this->faker->name;
+
         return [
-            //
+            'long_name'  => $long_name,
+            'short_name' => strtoupper(substr($long_name,0,3)),
+            'school_id'  => School::factory()
         ];
     }
 }

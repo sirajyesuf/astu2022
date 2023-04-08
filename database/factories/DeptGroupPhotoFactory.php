@@ -2,23 +2,22 @@
 
 namespace Database\Factories;
 
-use App\Models\Day;
+use App\Models\Department;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\Storage;
 
-class EventFactory extends Factory
+class DeptGroupPhotoFactory extends Factory
 {
    
     public function definition()
     {
         return [
-            'images' => [
+            'images' =>  [
                 $this->storeImage(),
                 $this->storeImage()
             ],
-            'day_id' => Day::factory(),
-            'order'  => $this->faker->numberBetween(1,20)
+            'department_id' => Department::factory()
         ];
     }
 
@@ -26,7 +25,7 @@ class EventFactory extends Factory
 
         $faker = Faker::create();
 
-        $image = $faker->image(storage_path('app/public/events'),640, 480, null, false);
+        $image = $faker->image(storage_path('app/public/students'),640, 480, null, false);
 
         return "students/".$image;
 
